@@ -1,0 +1,4 @@
+name: Glide
+version: '${project.version}'
+main: net.hackedlecterns.glide.Glide
+api-version: '1.16'
