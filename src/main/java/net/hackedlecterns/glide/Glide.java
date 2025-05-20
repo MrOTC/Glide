@@ -12,6 +12,12 @@ import java.util.Arrays;
 
 public final class Glide extends JavaPlugin {
 
+    public static Glide plugin;
+
+    public Glide() {
+        plugin = this;
+    }
+
     @Override
     public void onEnable() {
         this.getCommand("testCommand").setExecutor(new TestCommand());

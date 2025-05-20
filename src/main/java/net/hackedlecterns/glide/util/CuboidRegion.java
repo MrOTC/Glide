@@ -21,7 +21,16 @@ public class CuboidRegion {
     }
 
     public Location getCenter() {
-        return pos1.add(pos2).multiply(0.5);
+        return pos1.clone().add(pos2).multiply(0.5);
     }
 
+    public boolean contains(Location l) {
+        return isInBetween(l.getBlockX(), pos1.getBlockX(), pos2.getBlockX())
+            && isInBetween(l.getBlockY(), pos1.getBlockY(), pos2.getBlockY())
+            && isInBetween(l.getBlockZ(), pos1.getBlockZ(), pos2.getBlockZ());
+    }
+
+    private boolean isInBetween(double a, double b1, double b2) {
+        return Math.min(b1, b2) <= a && a <= Math.max(b1, b2);
+    }
 }

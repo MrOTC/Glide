@@ -1,5 +1,6 @@
 package net.hackedlecterns.glide.model;
 
+import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
@@ -24,9 +25,9 @@ public abstract class CourseEvent {
         return this.region;
     }
 
-    public void onEnter(Player p) {}
+    public void onEnter(Player player, Game game) {}
 
-    public void onLeave(Player p) {}
+    public void onLeave(Player player, Game game) {}
 
     @Override
     public String toString() {
