@@ -2,3 +2,11 @@ name: Glide
 version: '${project.version}'
 main: net.hackedlecterns.glide.Glide
 api-version: '1.16'
+commands:
+  boost1:
+  boost2:
+  boost3x:
+  boost3z:
+  boost3nx:
+  boost3nz:
+  testCommand:
