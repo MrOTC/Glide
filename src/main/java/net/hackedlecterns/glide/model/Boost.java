@@ -1,6 +1,9 @@
 package net.hackedlecterns.glide.model;
 
+import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 public class Boost extends CourseEvent {
 
@@ -23,5 +26,14 @@ public class Boost extends CourseEvent {
 
     public BoostDirection getDirection() {
         return direction;
+    }
+
+    @Override
+    public void onEnter(Player player, Game game) {
+        // TODO copied from boost1
+        float velocity = 5f;
+        Vector pv = player.getLocation().getDirection();
+        Vector v = pv.multiply(velocity);
+        player.setVelocity(v);
     }
 }

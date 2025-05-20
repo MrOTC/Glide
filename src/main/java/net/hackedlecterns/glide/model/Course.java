@@ -1,30 +1,29 @@
 package net.hackedlecterns.glide.model;
 
-import net.hackedlecterns.glide.game.Game;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    String name;
-    Location spawnLocation;
+    private final String name;
+    private final Location spawnLocation;
+    private final List<CourseEvent> courseEvents = new ArrayList<>();
 
-    CourseEvent finish = new CourseEvent("Finish", null) {
-        @Override
-        public void onEnter(Player p, Game game) {
-            // finish line behavior
-        }
-    };
+    public Course(String name, Location spawnLocation) {
+        this.name = name;
+        this.spawnLocation = spawnLocation;
+    }
 
-    List<CourseEvent> courseEvents = new ArrayList<>();
+    public String getName() {
+        return name;
+    }
+
+    public Location getSpawnLocation() {
+        return spawnLocation;
+    }
 
     public List<CourseEvent> getCourseEvents() {
         return courseEvents;
-    }
-
-    void tmpAddEvent(CourseEvent ce) {
-        courseEvents.add(ce);
     }
 }
