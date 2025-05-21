@@ -10,3 +10,8 @@ commands:
   boost3nx:
   boost3nz:
   testCommand:
+  start:
+
+permissions:
+  glide.start:
+    - default: true
