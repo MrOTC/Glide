@@ -1,6 +1,9 @@
 package net.hackedlecterns.glide.model;
 
+import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 public class Thermal extends CourseEvent {
 
@@ -32,5 +35,16 @@ public class Thermal extends CourseEvent {
 
     public int getTargetHeight() {
         return targetHeight;
+    }
+
+    @Override
+    public void onEnter(Player player, Game game) {
+        player.setGravity(false);
+        player.setVelocity(new Vector(player.getVelocity().getX(), staticLift * 1.5, player.getVelocity().getZ()));
+    }
+
+    @Override
+    public void onLeave(Player player, Game game) {
+        player.setGravity(true);
     }
 }
