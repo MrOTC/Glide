@@ -31,7 +31,7 @@ public class Boost extends CourseEvent {
     @Override
     public void onEnter(Player player, Game game) {
         // TODO copied from boost1
-        float velocity = 5f;
+        float velocity = 2f;
         Vector pv = player.getLocation().getDirection();
         Vector v = pv.multiply(velocity);
         player.setVelocity(v);

@@ -8,6 +8,7 @@ public class CuboidRegion {
     private final Location pos2;
 
     public CuboidRegion(Location pos1, Location pos2) {
+        assert pos1.getWorld() == pos2.getWorld();
         this.pos1 = pos1;
         this.pos2 = pos2;
     }
@@ -25,7 +26,8 @@ public class CuboidRegion {
     }
 
     public boolean contains(Location l) {
-        return isInBetween(l.getBlockX(), pos1.getBlockX(), pos2.getBlockX())
+        return l.getWorld() == pos1.getWorld()
+            && isInBetween(l.getBlockX(), pos1.getBlockX(), pos2.getBlockX())
             && isInBetween(l.getBlockY(), pos1.getBlockY(), pos2.getBlockY())
             && isInBetween(l.getBlockZ(), pos1.getBlockZ(), pos2.getBlockZ());
     }
