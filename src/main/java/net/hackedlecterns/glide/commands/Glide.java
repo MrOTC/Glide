@@ -65,7 +65,7 @@ public class Glide implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             // build list of valid subcommands
             return Arrays.stream(subCommands)
-                    .filter(c -> c.conditional.isTrue(sender)
+                    .filter(c -> c.conditional.isVisible(sender)
                             && (c.permission == null || sender.hasPermission(c.permission)))
                     .map(c -> c.command).toList();
         }
@@ -75,7 +75,7 @@ public class Glide implements CommandExecutor, TabCompleter {
                 .filter(c -> c.command.equals(args[0]))
                 .findAny().orElse(null);
 
-        if (cmd == null || cmd.completer == null) {
+        if (cmd == null) {
             return Collections.emptyList();
         }
 
@@ -85,8 +85,10 @@ public class Glide implements CommandExecutor, TabCompleter {
 
     static class SubCommand {
         interface Condition {
-            boolean isTrue(CommandSender s);
+            boolean isVisible(CommandSender s);
         }
+
+        static TabCompleter nullCompleter = (av,b,c,d) -> null;
 
         String command;
         String permission;
@@ -98,7 +100,7 @@ public class Glide implements CommandExecutor, TabCompleter {
             this.command = command;
             this.permission = permission;
             this.executor = executor;
-            this.completer = executor instanceof TabCompleter completer2 ? completer2 : null;
+            this.completer = executor instanceof TabCompleter completer2 ? completer2 : nullCompleter;
             this.conditional = conditional != null ? conditional : ignored -> true;
         }
     }

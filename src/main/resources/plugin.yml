@@ -11,5 +11,26 @@ commands:
 
 permissions:
   glide.start:
-    description: permission to execute /glide join
     default: true
+  glide.createcourse:
+    default: op
+  glide.removecourse:
+    default: op
+  glide.editcourse:
+    default: op
+  glide.addboost:
+    default: op
+  glide.addcheckpoint:
+    default: op
+  glide.addthermal:
+    default: op
+  glide.finishcourse:
+    default: op
+  glide.setstart:
+    default: op
+  glide.setfinish:
+    default: op
+  glide.pos1:
+    default: op
+  glide.pos2:
+    default: op
