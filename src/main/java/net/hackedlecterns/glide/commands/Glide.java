@@ -66,7 +66,8 @@ public class Glide implements CommandExecutor, TabCompleter {
             // build list of valid subcommands
             return Arrays.stream(subCommands)
                     .filter(c -> c.conditional.isVisible(sender)
-                            && (c.permission == null || sender.hasPermission(c.permission)))
+                            && (c.permission == null || sender.hasPermission(c.permission))
+                            && (args[0].isEmpty() || c.command.contains(args[0])))
                     .map(c -> c.command).toList();
         }
 
