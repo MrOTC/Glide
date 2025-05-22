@@ -1,7 +1,7 @@
 package net.hackedlecterns.glide.commands;
 
-import net.hackedlecterns.glide.model.Boost;
 import net.hackedlecterns.glide.model.Course;
+import net.hackedlecterns.glide.model.Thermal;
 import net.hackedlecterns.glide.util.CuboidRegion;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class AddBoost implements CommandExecutor {
-    private static int boostCounter = 0;
+public class AddThermal implements CommandExecutor {
+    private static int thermalCounter = 0;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -31,21 +31,20 @@ public class AddBoost implements CommandExecutor {
             return false;
         }
 
-        if (args.length < 2) {
+        if (args.length < 1) {
             player.sendMessage("Invalid command format.");
             return false;
         }
 
-        double speed = Double.parseDouble(args[0]);
-        Boost.BoostDirection direction = Boost.BoostDirection.valueOf(args[1].toUpperCase());
-        String name = (args.length >= 3) ? args[2] : "boost_" + (++boostCounter);
+        double lift = Double.parseDouble(args[0]);
+        String name = (args.length >= 2) ? args[1] : "thermal_" + (++thermalCounter);
 
         Course course = EditCourse.getEditingCourse(player);
         CuboidRegion region = new CuboidRegion(pos1, pos2);
-        Boost boost = new Boost(name, region, speed, direction);
-        course.getCourseEvents().add(boost);
+        Thermal thermal = new Thermal(name, region, lift);
+        course.getCourseEvents().add(thermal);
 
-        player.sendMessage("Boost added.");
+        player.sendMessage("Thermal added.");
         return true;
     }
 }
