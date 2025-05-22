@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Course {
     private final String name;
-    private final Location spawnLocation;
+    private Location spawnLocation;
     private final List<CourseEvent> courseEvents = new ArrayList<>();
 
     public Course(String name, Location spawnLocation) {
@@ -25,5 +25,9 @@ public class Course {
 
     public List<CourseEvent> getCourseEvents() {
         return courseEvents;
+    }
+
+    public void setSpawnLocation(Location spawnLocation) {
+        this.spawnLocation = spawnLocation;
     }
 }
