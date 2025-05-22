@@ -24,7 +24,7 @@ public final class Glide extends JavaPlugin {
         this.getCommand("addcheckpoint").setExecutor(new AddCheckpoint());
         this.getCommand("addthermal").setExecutor(new AddThermal());
         this.getCommand("createcourse").setExecutor(new CreateCourse());
-        this.getCommand("editcourse").setTabCompleter(new EditCourse());
+        this.getCommand("editcourse").setExecutor(new EditCourse());
         this.getCommand("finishcourse").setExecutor(new FinishCourse());
         this.getCommand("pos1").setExecutor(new Pos1());
         this.getCommand("pos2").setExecutor(new Pos2());
