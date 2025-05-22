@@ -11,6 +11,17 @@ commands:
   boost3nz:
   testCommand:
   start:
+  addboost:
+  addcheckpoint:
+  addthermal:
+  createcourse:
+  editcourse:
+  finishcourse:
+  pos1:
+  pos2:
+  removecourse:
+  setfinish:
+  setstart:
 
 permissions:
   glide.start:
