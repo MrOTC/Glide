@@ -1,6 +1,6 @@
 package net.hackedlecterns.glide;
 
-import net.hackedlecterns.glide.commands.TestCommand;
+import net.hackedlecterns.glide.commands.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,6 +20,18 @@ public final class Glide extends JavaPlugin {
     @Override
     public void onEnable() {
         this.getCommand("testCommand").setExecutor(new TestCommand());
+        this.getCommand("addboost").setExecutor(new AddBoost());
+        this.getCommand("addcheckpoint").setExecutor(new AddCheckpoint());
+        this.getCommand("addthermal").setExecutor(new AddThermal());
+        this.getCommand("createcourse").setExecutor(new CreateCourse());
+        this.getCommand("editcourse").setTabCompleter(new EditCourse());
+        this.getCommand("finishcourse").setExecutor(new FinishCourse());
+        this.getCommand("pos1").setExecutor(new Pos1());
+        this.getCommand("pos2").setExecutor(new Pos2());
+        this.getCommand("removecourse").setExecutor(new RemoveCourse());
+        this.getCommand("setfinish").setExecutor(new SetFinish());
+        this.getCommand("setstart").setExecutor(new SetStart());
+        this.getCommand("start").setExecutor(new Start());
     }
 
     @Override
