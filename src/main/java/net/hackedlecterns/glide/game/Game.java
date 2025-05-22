@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static net.hackedlecterns.glide.Glide.plugin;
+import static net.hackedlecterns.glide.Main.plugin;
 
 public class Game {
 
@@ -35,6 +35,10 @@ public class Game {
     }
 
     public void start() {
+        for (Player p : players) {
+            p.saveData();
+            p.setHealth(6);
+        }
         this.state = GameState.PLAYING;
         Bukkit.getServer().getPluginManager().registerEvents(new GameEventListener(this), plugin);
     }
