@@ -1,6 +1,5 @@
 package net.hackedlecterns.glide;
 
-import net.hackedlecterns.glide.commands.Boost1;
 import net.hackedlecterns.glide.commands.TestCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -21,7 +20,6 @@ public final class Glide extends JavaPlugin {
     @Override
     public void onEnable() {
         this.getCommand("testCommand").setExecutor(new TestCommand());
-        this.getCommand("boost1").setExecutor(new Boost1());
     }
 
     @Override
