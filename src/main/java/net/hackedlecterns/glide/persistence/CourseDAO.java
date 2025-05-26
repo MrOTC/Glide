@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static net.hackedlecterns.glide.Glide.plugin;
+import static net.hackedlecterns.glide.Main.plugin;
 
 public class CourseDAO {
     private static final File FILE = new File(plugin.getDataFolder(), "courses.yml");

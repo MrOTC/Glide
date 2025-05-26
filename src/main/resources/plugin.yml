@@ -1,28 +1,36 @@
 name: Glide
 version: '${project.version}'
-main: net.hackedlecterns.glide.Glide
+main: net.hackedlecterns.glide.Main
 api-version: '1.16'
 commands:
-  boost1:
-  boost2:
-  boost3x:
-  boost3z:
-  boost3nx:
-  boost3nz:
-  testCommand:
-  start:
-  addboost:
-  addcheckpoint:
-  addthermal:
-  createcourse:
-  editcourse:
-  finishcourse:
-  pos1:
-  pos2:
-  removecourse:
-  setfinish:
-  setstart:
+  glide:
+    description: The main command for glide
+    usage: /glide [subcommand]
+    aliases:
+      - gl
 
 permissions:
   glide.start:
-    - default: true
+    default: true
+  glide.createcourse:
+    default: op
+  glide.removecourse:
+    default: op
+  glide.editcourse:
+    default: op
+  glide.addboost:
+    default: op
+  glide.addcheckpoint:
+    default: op
+  glide.addthermal:
+    default: op
+  glide.finishcourse:
+    default: op
+  glide.setstart:
+    default: op
+  glide.setfinish:
+    default: op
+  glide.pos1:
+    default: op
+  glide.pos2:
+    default: op
