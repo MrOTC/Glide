@@ -53,7 +53,9 @@ public class EditCourse implements CommandExecutor, TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
                                                 @NotNull String alias, @NotNull String[] args) {
         if (args.length == 1) {
-            return CourseDAO.courses.keySet().stream().toList();
+            return CourseDAO.courses.keySet().stream()
+                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .toList();
         }
         return Collections.emptyList();
     }

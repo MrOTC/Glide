@@ -70,7 +70,9 @@ public class AddBoost implements CommandExecutor, TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if (args.length == 2) {
             return Arrays.stream(Boost.BoostDirection.values())
-                    .map(Enum::name).collect(Collectors.toList());
+                    .map(Enum::name)
+                    .filter(name -> name.toLowerCase().startsWith(args[1].toLowerCase()))
+                    .collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
