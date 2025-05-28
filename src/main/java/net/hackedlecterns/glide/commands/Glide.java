@@ -47,7 +47,7 @@ public class Glide implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        if (!sender.hasPermission(cmd.permission)) {
+        if (cmd.permission != null && !sender.hasPermission(cmd.permission)) {
             sender.sendMessage("Insufficient permission");
             return false;
         }
@@ -89,7 +89,7 @@ public class Glide implements CommandExecutor, TabCompleter {
             boolean isVisible(CommandSender s);
         }
 
-        static TabCompleter nullCompleter = (av,b,c,d) -> null;
+        static TabCompleter nullCompleter = (a,b,c,d) -> null;
 
         String command;
         String permission;

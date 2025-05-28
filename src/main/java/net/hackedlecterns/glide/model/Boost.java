@@ -4,6 +4,9 @@ import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 public class Boost extends CourseEvent {
 
@@ -38,5 +41,20 @@ public class Boost extends CourseEvent {
             default -> player.getLocation().getDirection().multiply(speedBoost);
         };
         player.setVelocity(v);
+    }
+
+    @Override
+    public @NotNull Map<String, Object> serialize() {
+        var m = super.serialize();
+        m.put("speedBoost", speedBoost);
+        m.put("direction", direction.name());
+        return m;
+    }
+
+    // deserialize
+    public Boost(Map<String, Object> data) {
+        super(data);
+        this.speedBoost = (Double) data.getOrDefault("speedBoost", 0.0);
+        this.direction = BoostDirection.valueOf((String) data.getOrDefault("direction", BoostDirection.OMNI_PLUS_X.name()));
     }
 }

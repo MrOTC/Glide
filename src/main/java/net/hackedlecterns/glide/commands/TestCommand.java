@@ -43,6 +43,20 @@ public class TestCommand implements CommandExecutor {
                     e.printStackTrace(); // TODO
                 }
             }
+            case "save" -> {
+                try {
+                    CourseDAO.save();
+                } catch (IOException e) {
+                    e.printStackTrace(); // TODO
+                }
+            }
+            case "read" -> {
+                try {
+                    CourseDAO.read();
+                } catch (IOException e) {
+                    e.printStackTrace(); // TODO
+                }
+            }
         }
         return true;
     }

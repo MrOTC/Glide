@@ -4,6 +4,9 @@ import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 public class Thermal extends CourseEvent {
 
@@ -46,5 +49,22 @@ public class Thermal extends CourseEvent {
     @Override
     public void onLeave(Player player, Game game) {
         player.setGravity(true);
+    }
+
+    @Override
+    public @NotNull Map<String, Object> serialize() {
+        var m = super.serialize();
+        m.put("liftForceModifier", liftForceModifier);
+        m.put("staticLift", staticLift);
+        m.put("targetHeight", targetHeight);
+        return m;
+    }
+
+    // deserialize
+    public Thermal(Map<String, Object> data) {
+        super(data);
+        this.liftForceModifier = (Double) data.getOrDefault("liftForceModifier", 0.0);
+        this.targetHeight = (Integer) data.getOrDefault("targetHeight", 0.0);
+        this.staticLift = (Double) data.getOrDefault("staticLift", 0.0);
     }
 }

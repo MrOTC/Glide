@@ -4,6 +4,9 @@ import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 public class Checkpoint extends CourseEvent {
 
@@ -22,5 +25,18 @@ public class Checkpoint extends CourseEvent {
     public void onEnter(Player player, Game game) {
         // TODO
         player.sendMessage("Checkpoint reached!");
+    }
+
+    @Override
+    public @NotNull Map<String, Object> serialize() {
+        var m = super.serialize();
+        m.put("spawn", spawn);
+        return m;
+    }
+
+    // deserialize
+    public Checkpoint(Map<String, Object> data) {
+        super(data);
+        this.spawn = (Location) data.getOrDefault("spawn", null);
     }
 }
