@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,6 +22,11 @@ public class Start implements CommandExecutor, TabCompleter {
             return false;
         }
 
+        if (!(sender instanceof Player p)) {
+            sender.sendMessage("Not player");
+            return false;
+        }
+
         if (args == null || args.length < 1 || args[0].isEmpty())  {
             sender.sendMessage("Invalid command format");
             return false;
@@ -32,7 +38,9 @@ public class Start implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        new Game(Game.GameType.TIME, course).start();
+        Game game = new Game(Game.GameType.TIME, course);
+        game.addPlayer(p);
+        game.start();
         sender.sendMessage("Game started!");
         return true;
     }

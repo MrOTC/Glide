@@ -2,7 +2,9 @@ package net.hackedlecterns.glide.game;
 
 import net.hackedlecterns.glide.model.Course;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,7 +20,8 @@ public class Game {
     }
 
     enum GameState {
-        WAITING,
+        WAITING, // in lobby waiting for players to join
+        STARTING, // in course waiting for 3-second countdown
         PLAYING,
         FINISHED
     }
@@ -38,9 +41,20 @@ public class Game {
         for (Player p : players) {
             p.saveData();
             p.setHealth(6);
+            p.teleport(course.getSpawnLocation());
+            p.getInventory().setChestplate(new ItemStack(Material.ELYTRA));
+            p.setFlying(true);
         }
-        this.state = GameState.PLAYING;
+        this.state = GameState.STARTING;
         Bukkit.getServer().getPluginManager().registerEvents(new GameEventListener(this), plugin);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            players.forEach(p -> p.sendMessage("Start"));
+            this.state = GameState.PLAYING;
+        }, 10);
+    }
+
+    public void addPlayer(Player p) {
+        players.add(p);
     }
 
     public Course getCourse() {

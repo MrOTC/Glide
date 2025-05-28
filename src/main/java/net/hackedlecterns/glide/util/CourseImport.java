@@ -22,7 +22,7 @@ public class CourseImport {
 
     public static Course fromGrf(String courseName, String worldName, String filename) throws IOException {
         World world = Objects.requireNonNull(Bukkit.getWorld(worldName));
-        Location spawn = world.getSpawnLocation();
+        Location spawn = world.getSpawnLocation(); // TODO should import a spawnLocation
         Course newCourse = new Course(courseName, spawn);
 
         List<Object> root = parser.fromJson(new FileReader(new File(DIR, filename)), List.class);
