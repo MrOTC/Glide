@@ -29,7 +29,7 @@ public class TestCommand implements CommandExecutor {
             case "pos1" -> testLoc1 = player.getLocation().clone();
             case "pos2" -> testLoc2 = player.getLocation().clone();
             case "start" -> {
-                Game game = new Game(Game.GameType.TIME, Objects.requireNonNull(CourseDAO.courses.get(args[1])));
+                Game game = new Game(Game.GameType.TIME, Objects.requireNonNull(CourseDAO.getCourse(args[1])));
                 game.start();
                 sender.sendMessage("Starting game");
 //                testGame.getCourse().getCourseEvents().add(new Boost(null, new CuboidRegion(testLoc1, testLoc2), 10, Boost.BoostDirection.OMNI_MINUS_X));
@@ -38,24 +38,16 @@ public class TestCommand implements CommandExecutor {
             }
             case "import" -> {
                 try {
-                    CourseDAO.courses.put(args[1], CourseImport.fromGrf(args[1], args[2], args[3]));
+                    CourseDAO.addCourse(CourseImport.fromGrf(args[1], args[2], args[3]));
                 } catch (IOException e) {
                     e.printStackTrace(); // TODO
                 }
             }
             case "save" -> {
-                try {
-                    CourseDAO.save();
-                } catch (IOException e) {
-                    e.printStackTrace(); // TODO
-                }
+                CourseDAO.save();
             }
             case "read" -> {
-                try {
-                    CourseDAO.read();
-                } catch (IOException e) {
-                    e.printStackTrace(); // TODO
-                }
+                CourseDAO.read();
             }
         }
         return true;

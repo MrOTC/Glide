@@ -34,14 +34,14 @@ public class CreateCourse implements CommandExecutor, TabCompleter {
         }
 
         String name = args[0];
-        if (CourseDAO.courses.containsKey(name)) {
+        if (CourseDAO.containsCourse(name)) {
             sender.sendMessage("A course with that name already exists.");
             return false;
         }
 
         Location loc = player.getLocation();
         Course course = new Course(name, loc);
-        CourseDAO.courses.put(name, course);
+        CourseDAO.addCourse(course);
 
         sender.sendMessage("Course '" + name + "' created with spawn at your current location.");
         return true;

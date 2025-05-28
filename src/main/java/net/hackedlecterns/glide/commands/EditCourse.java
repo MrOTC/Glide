@@ -36,7 +36,7 @@ public class EditCourse implements CommandExecutor, TabCompleter {
         }
 
         String name = args[0];
-        Course course = CourseDAO.courses.get(name);
+        Course course = CourseDAO.getCourse(name);
         if (course == null) {
             player.sendMessage("Course not found.");
             return false;
@@ -53,7 +53,8 @@ public class EditCourse implements CommandExecutor, TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
                                                 @NotNull String alias, @NotNull String[] args) {
         if (args.length == 1) {
-            return CourseDAO.courses.keySet().stream()
+            return CourseDAO.getCourses().stream()
+                    .map(Course::getName)
                     .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
                     .toList();
         }

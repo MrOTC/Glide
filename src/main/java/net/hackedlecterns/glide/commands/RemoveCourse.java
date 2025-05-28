@@ -27,9 +27,9 @@ public class RemoveCourse implements CommandExecutor, TabCompleter {
         }
 
         String name = args[0];
-        Course removed = CourseDAO.courses.remove(name);
+        boolean removed = CourseDAO.removeCourse(name);
 
-        if (removed == null) {
+        if (!removed) {
             sender.sendMessage("No course named '" + name + "' was found.");
             return false;
         }
@@ -41,7 +41,10 @@ public class RemoveCourse implements CommandExecutor, TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if (args.length == 1) {
-            return CourseDAO.courses.keySet().stream().toList();
+            return CourseDAO.getCourses().stream()
+                    .map(Course::getName)
+                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .toList();
         }
 
         return Collections.emptyList();

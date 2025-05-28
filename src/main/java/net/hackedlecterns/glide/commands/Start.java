@@ -26,7 +26,7 @@ public class Start implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        var course = CourseDAO.courses.get(args[0]);
+        var course = CourseDAO.getCourse(args[0]);
         if (course == null) {
             sender.sendMessage(String.format("Course %s not found", args[0]));
             return false;
@@ -40,7 +40,10 @@ public class Start implements CommandExecutor, TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if (args.length == 1) {
-            return CourseDAO.courses.values().stream().map(Course::getName).toList();
+            return CourseDAO.getCourses().stream()
+                    .map(Course::getName)
+                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .toList();
         }
 
         return Collections.emptyList();
