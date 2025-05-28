@@ -17,10 +17,6 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         plugin = this;
 
-        Objects.requireNonNull(this.getCommand("glide")).setExecutor(new Glide());
-
-        CourseDAO.read();
-
         ConfigurationSerialization.registerClass(Boost.class);
         ConfigurationSerialization.registerClass(Checkpoint.class);
         ConfigurationSerialization.registerClass(Course.class);
@@ -28,5 +24,9 @@ public final class Main extends JavaPlugin {
         ConfigurationSerialization.registerClass(Finish.class);
         ConfigurationSerialization.registerClass(Thermal.class);
         ConfigurationSerialization.registerClass(CuboidRegion.class);
+
+        Objects.requireNonNull(this.getCommand("glide")).setExecutor(new Glide());
+
+        CourseDAO.read();
     }
 }

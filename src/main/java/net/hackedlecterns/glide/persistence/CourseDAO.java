@@ -7,6 +7,8 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static net.hackedlecterns.glide.Main.plugin;
+
 public class CourseDAO {
     private static final CustomConfig CONFIG = new CustomConfig("courses.yml");
 
@@ -54,5 +56,6 @@ public class CourseDAO {
         var courseList = (List<Course>) CONFIG.getRoot().getList("courses");
         Objects.requireNonNull(courseList);
         courses = courseList.stream().collect(Collectors.toMap(Course::getName, Function.identity()));
+        plugin.getLogger().info(String.format("Loaded %s course(s)", courses.size()));
     }
 }

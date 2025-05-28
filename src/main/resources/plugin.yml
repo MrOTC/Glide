@@ -2,6 +2,8 @@ name: Glide
 version: '${project.version}'
 main: net.hackedlecterns.glide.Main
 api-version: '1.16'
+load: POSTWORLD
+softdepend: [Multiverse-Core]
 commands:
   glide:
     description: The main command for glide
