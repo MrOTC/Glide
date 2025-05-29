@@ -1,5 +1,6 @@
 package net.hackedlecterns.glide.model;
 
+import net.hackedlecterns.glide.game.Game;
 import org.bukkit.Location;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.NotNull;
@@ -10,6 +11,7 @@ public class Course implements ConfigurationSerializable {
     private final String name;
     private Location spawnLocation;
     private final List<CourseEvent> courseEvents;
+    private transient Game game;
 
     public Course(String name, Location spawnLocation) {
         this.name = name;
@@ -31,6 +33,14 @@ public class Course implements ConfigurationSerializable {
 
     public void setSpawnLocation(Location spawnLocation) {
         this.spawnLocation = spawnLocation;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override

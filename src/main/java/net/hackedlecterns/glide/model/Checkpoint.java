@@ -2,6 +2,8 @@ package net.hackedlecterns.glide.model;
 
 import net.hackedlecterns.glide.game.Game;
 import net.hackedlecterns.glide.util.CuboidRegion;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +26,8 @@ public class Checkpoint extends CourseEvent {
     @Override
     public void onEnter(Player player, Game game) {
         // TODO
-        player.sendMessage("Checkpoint reached!");
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Checkpoint reached!"));
+        game.getCheckpoints().get(player).add(this);
     }
 
     @Override
